@@ -1,10 +1,7 @@
 package com.aetheris.aetherutils.client;
 
 import com.aetheris.aetherutils.AetherUtils;
-import com.aetheris.aetherutils.inventorysorter.InventorySorterClient;
-import com.aetheris.aetherutils.lightlevels.LightLevelsClient;
 import com.aetheris.aetherutils.treecapitator.TreecapitatorClient;
-import com.aetheris.aetherutils.zoom.ZoomClient;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -32,9 +29,6 @@ public class AetherUtilsClient implements ClientModInitializer {
 		);
 
 		TreecapitatorClient.initialize();
-		LightLevelsClient.initialize();
-		ZoomClient.initialize();
-		InventorySorterClient.initialize();
 
 		AetherUtilsKeybindConfig.load();
 

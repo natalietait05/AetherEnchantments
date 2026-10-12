@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "aetherutils",
+	"id": "aetherenchantments",
 	"version": "${version}",
-	"name": "AetherUtils",
+	"name": "aetherenchantments",
 	"description": "Mix of mods for minecraft",
 	"authors": [
 		"Aetheris"
