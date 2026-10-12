@@ -11,7 +11,7 @@
         }
       },
       {
-        "threshold": 1.0,
+        "threshold": 0.996,
         "model": {
           "type": "minecraft:model",
           "model": "minecraft:item/iron_sword_damaged2"
@@ -20,3 +20,4 @@
     ]
   }
 }
+

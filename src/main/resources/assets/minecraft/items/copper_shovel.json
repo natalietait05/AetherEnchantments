@@ -1,4 +1,4 @@
-﻿{
+{
   "model": {
     "type": "minecraft:range_dispatch",
     "property": "minecraft:damage",
@@ -11,7 +11,7 @@
         }
       },
       {
-        "threshold": 1.0,
+        "threshold": 0.994736,
         "model": {
           "type": "minecraft:model",
           "model": "minecraft:item/copper_shovel_damaged2"

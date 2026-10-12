@@ -1,4 +1,4 @@
-﻿{
+{
   "model": {
     "type": "minecraft:range_dispatch",
     "property": "minecraft:damage",
@@ -11,7 +11,7 @@
         }
       },
       {
-        "threshold": 1.0,
+        "threshold": 0.9686,
         "model": {
           "type": "minecraft:model",
           "model": "minecraft:item/golden_pickaxe_damaged2"
@@ -20,3 +20,4 @@
     ]
   }
 }
+

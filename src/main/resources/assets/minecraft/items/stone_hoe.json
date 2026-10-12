@@ -11,7 +11,7 @@
         }
       },
       {
-        "threshold": 1.0,
+        "threshold": 0.992366,
         "model": {
           "type": "minecraft:model",
           "model": "minecraft:item/stone_hoe_damaged2"
@@ -20,3 +20,4 @@
     ]
   }
 }
+

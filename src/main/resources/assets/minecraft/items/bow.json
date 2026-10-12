@@ -13,21 +13,7 @@
           }
         },
         {
-          "threshold": 0.85,
-          "model": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/bow_damaged0"
-          }
-        },
-        {
-          "threshold": 0.9,
-          "model": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/bow_damaged1"
-          }
-        },
-        {
-          "threshold": 0.95,
+          "threshold": 0.997395,
           "model": {
             "type": "minecraft:model",
             "model": "minecraft:item/bow_damaged2"
@@ -51,21 +37,7 @@
                 }
               },
               {
-                "threshold": 0.85,
-                "model": {
-                  "type": "minecraft:model",
-                  "model": "minecraft:item/bow_pulling_1_damaged0"
-                }
-              },
-              {
-                "threshold": 0.9,
-                "model": {
-                  "type": "minecraft:model",
-                  "model": "minecraft:item/bow_pulling_1_damaged1"
-                }
-              },
-              {
-                "threshold": 0.95,
+                "threshold": 0.997395,
                 "model": {
                   "type": "minecraft:model",
                   "model": "minecraft:item/bow_pulling_1_damaged2"
@@ -88,21 +60,7 @@
                 }
               },
               {
-                "threshold": 0.85,
-                "model": {
-                  "type": "minecraft:model",
-                  "model": "minecraft:item/bow_pulling_2_damaged0"
-                }
-              },
-              {
-                "threshold": 0.9,
-                "model": {
-                  "type": "minecraft:model",
-                  "model": "minecraft:item/bow_pulling_2_damaged1"
-                }
-              },
-              {
-                "threshold": 0.95,
+                "threshold": 0.997395,
                 "model": {
                   "type": "minecraft:model",
                   "model": "minecraft:item/bow_pulling_2_damaged2"
@@ -125,21 +83,7 @@
             }
           },
           {
-            "threshold": 0.85,
-            "model": {
-              "type": "minecraft:model",
-              "model": "minecraft:item/bow_pulling_0_damaged0"
-            }
-          },
-          {
-            "threshold": 0.9,
-            "model": {
-              "type": "minecraft:model",
-              "model": "minecraft:item/bow_pulling_0_damaged1"
-            }
-          },
-          {
-            "threshold": 0.95,
+            "threshold": 0.997395,
             "model": {
               "type": "minecraft:model",
               "model": "minecraft:item/bow_pulling_0_damaged2"

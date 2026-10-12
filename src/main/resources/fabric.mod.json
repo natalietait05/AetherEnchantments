@@ -19,7 +19,8 @@
     ]
   },
   "mixins": [
-    "aetherenchantments.mixins.json"
+    "aetherenchantments.mixins.json",
+    "aetherenchantments.client.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.19.5",
