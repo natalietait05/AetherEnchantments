@@ -1,38 +1,30 @@
 {
-	"schemaVersion": 1,
-	"id": "aetherenchantments",
-	"version": "${version}",
-	"name": "aetherenchantments",
-	"description": "Mix of mods for minecraft",
-	"authors": [
-		"Aetheris"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/aetherutils/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.aetheris.aetherutils.AetherUtils"
-		],
-		"client": [
-			"com.aetheris.aetherutils.client.AetherUtilsClient"
-		]
-	},
-	"mixins": [
-		"aetherutils.mixins.json",
-		{
-			"config": "aetherutils.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.19.5",
-		"minecraft": "~26.3",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "aetherenchantments",
+  "version": "${version}",
+  "name": "AetherEnchantments",
+  "description": "Enchantment-based utility mechanics for Minecraft.",
+  "authors": [
+    "Aetheris"
+  ],
+  "contact": {
+    "sources": "https://github.com/natalietait05/AetherEnchantments"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/aetherenchantments/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.aetheris.aetherenchantments.AetherEnchantments"
+    ]
+  },
+  "mixins": [
+    "aetherenchantments.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }
