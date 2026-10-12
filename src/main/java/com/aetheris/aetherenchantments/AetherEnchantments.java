@@ -30,6 +30,14 @@ public final class AetherEnchantments implements ModInitializer {
         // Normal left-click mining cuts the connected tree. The enchantment level
         // determines the maximum number of trunk blocks processed.
         PlayerBlockBreakEvents.BEFORE.register((level, player, pos, state, blockEntity) -> {
+
+            if (EnchantmentUtil.isIndestructibleUnusable(
+                    player.level(),
+                    player.getMainHandItem()
+            )) {
+                return false;
+            }
+
             if (Treecapitator.isProcessingTree()) {
                 return true;
             }
@@ -96,8 +104,8 @@ public final class AetherEnchantments implements ModInitializer {
 
     private static int maxTreeBlocks(int level) {
         return switch (Math.min(level, 3)) {
-            case 1 -> 64;
-            case 2 -> 128;
+            case 1 -> 8;
+            case 2 -> 40;
             default -> 256;
         };
     }

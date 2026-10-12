@@ -3,7 +3,10 @@
   "package": "com.aetheris.aetherenchantments.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "IndestructibleItemStackMixin"
+    "IndestructibleArmorAttributesMixin",
+    "IndestructibleArmorEnchantmentsMixin",
+    "IndestructibleItemStackMixin",
+    "IndestructiblePlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

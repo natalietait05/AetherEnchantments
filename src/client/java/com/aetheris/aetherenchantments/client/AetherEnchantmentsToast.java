@@ -3,6 +3,7 @@ package com.aetheris.aetherenchantments.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 
 public final class AetherEnchantmentsToast {
 
@@ -59,5 +60,13 @@ public final class AetherEnchantmentsToast {
                 y,
                 color
         );
+    }
+    public static void showUnusable(ItemStack stack) {
+        if (stack == null || stack.isEmpty()) {
+            return;
+        }
+
+        show("Repair " + stack.getHoverName().getString()
+                + " to be usable");
     }
 }
