@@ -1,3 +1,4 @@
+
 package com.aetheris.aetherenchantments.treecapitator;
 
 import net.minecraft.core.BlockPos;
@@ -10,19 +11,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class TreeDetector {
+
     private static final int MAX_NETHER_BLOCKS = 512;
     private static final int LEAF_SEARCH_RADIUS = 2;
 
     private TreeDetector() {
     }
 
-    public static Set<BlockPos> findConnectedLogs(Level level, BlockPos origin, int maxLogs) {
+    public static Set<BlockPos> findConnectedLogs(
+            Level level,
+            BlockPos origin,
+            int maxLogs
+    ) {
         Set<BlockPos> logs = new HashSet<>();
         Set<BlockPos> visited = new HashSet<>();
+
         ArrayDeque<BlockPos> queue = new ArrayDeque<>();
         ArrayDeque<Integer> distances = new ArrayDeque<>();
 
         BlockState originState = level.getBlockState(origin);
+
         if (!isTreeTrunk(originState) || maxLogs <= 0) {
             return logs;
         }
@@ -33,31 +41,41 @@ public final class TreeDetector {
         logs.add(origin);
 
         while (!queue.isEmpty() && logs.size() < maxLogs) {
+
             BlockPos current = queue.removeFirst();
             int distance = distances.removeFirst();
 
-            for (BlockPos neighbor : getNeighbors(current)) {
-                if (visited.contains(neighbor)) {
+            for (BlockPos neighbour : getNeighbours(current)) {
+
+                if (visited.contains(neighbour)) {
                     continue;
                 }
 
-                BlockState state = level.getBlockState(neighbor);
+                BlockState state = level.getBlockState(neighbour);
+
                 if (isTreeTrunk(state)) {
+
                     if (sameTreeType(originState, state)) {
-                        visited.add(neighbor);
-                        logs.add(neighbor);
-                        queue.addLast(neighbor);
+
+                        visited.add(neighbour);
+                        logs.add(neighbour);
+
+                        queue.addLast(neighbour);
                         distances.addLast(distance + 1);
+
                         if (logs.size() >= maxLogs) {
                             break;
                         }
                     }
+
                     continue;
                 }
 
-                if (state.is(net.minecraft.tags.BlockTags.LEAVES) && distance < 3) {
-                    visited.add(neighbor);
-                    queue.addLast(neighbor);
+                if (state.is(net.minecraft.tags.BlockTags.LEAVES)
+                        && distance < 3) {
+
+                    visited.add(neighbour);
+                    queue.addLast(neighbour);
                     distances.addLast(distance + 1);
                 }
             }
@@ -79,33 +97,43 @@ public final class TreeDetector {
         return state.is(Blocks.MANGROVE_ROOTS);
     }
 
-    public static boolean sameTreeType(BlockState origin, BlockState other) {
+    public static boolean sameTreeType(
+            BlockState origin,
+            BlockState other
+    ) {
         if (isCrimsonStem(origin)) {
             return isCrimsonStem(other);
         }
+
         if (isWarpedStem(origin)) {
             return isWarpedStem(other);
         }
+
         if (origin.is(Blocks.MANGROVE_LOG)
                 || origin.is(Blocks.STRIPPED_MANGROVE_LOG)
                 || isMangroveRoot(origin)) {
+
             return other.is(Blocks.MANGROVE_LOG)
                     || other.is(Blocks.STRIPPED_MANGROVE_LOG)
                     || isMangroveRoot(other);
         }
+
         if (origin.is(net.minecraft.tags.BlockTags.LOGS)) {
             return other.is(net.minecraft.tags.BlockTags.LOGS)
                     && other.getBlock() == origin.getBlock();
         }
+
         return false;
     }
 
     public static boolean isCrimsonStem(BlockState state) {
-        return state.is(Blocks.CRIMSON_STEM) || state.is(Blocks.STRIPPED_CRIMSON_STEM);
+        return state.is(Blocks.CRIMSON_STEM)
+                || state.is(Blocks.STRIPPED_CRIMSON_STEM);
     }
 
     public static boolean isWarpedStem(BlockState state) {
-        return state.is(Blocks.WARPED_STEM) || state.is(Blocks.STRIPPED_WARPED_STEM);
+        return state.is(Blocks.WARPED_STEM)
+                || state.is(Blocks.STRIPPED_WARPED_STEM);
     }
 
     public static boolean isStrippedStem(BlockState state) {
@@ -113,84 +141,147 @@ public final class TreeDetector {
                 || state.is(Blocks.STRIPPED_WARPED_STEM);
     }
 
-    public static boolean hasNearbyLeaves(Level level, Set<BlockPos> logs) {
+    public static boolean hasNearbyLeaves(
+            Level level,
+            Set<BlockPos> logs
+    ) {
         for (BlockPos log : logs) {
-            for (int x = -LEAF_SEARCH_RADIUS; x <= LEAF_SEARCH_RADIUS; x++) {
-                for (int y = -LEAF_SEARCH_RADIUS; y <= LEAF_SEARCH_RADIUS; y++) {
-                    for (int z = -LEAF_SEARCH_RADIUS; z <= LEAF_SEARCH_RADIUS; z++) {
+
+            for (int x = -LEAF_SEARCH_RADIUS;
+                 x <= LEAF_SEARCH_RADIUS; x++) {
+
+                for (int y = -LEAF_SEARCH_RADIUS;
+                     y <= LEAF_SEARCH_RADIUS; y++) {
+
+                    for (int z = -LEAF_SEARCH_RADIUS;
+                         z <= LEAF_SEARCH_RADIUS; z++) {
+
                         BlockPos pos = log.offset(x, y, z);
-                        if (level.getBlockState(pos).is(net.minecraft.tags.BlockTags.LEAVES)) {
+
+                        if (level.getBlockState(pos)
+                                .is(net.minecraft.tags.BlockTags.LEAVES)) {
                             return true;
                         }
                     }
                 }
             }
         }
+
         return false;
     }
 
-    public static boolean hasNetherGround(Level level, Set<BlockPos> stems) {
+    public static boolean hasNetherGround(
+            Level level,
+            Set<BlockPos> stems
+    ) {
         for (BlockPos stem : stems) {
+
             BlockState below = level.getBlockState(stem.below());
+
             if (below.is(Blocks.NETHERRACK)) {
                 return true;
             }
-            if (isCrimsonStem(level.getBlockState(stem)) && below.is(Blocks.CRIMSON_NYLIUM)) {
+
+            if (isCrimsonStem(level.getBlockState(stem))
+                    && below.is(Blocks.CRIMSON_NYLIUM)) {
                 return true;
             }
-            if (isWarpedStem(level.getBlockState(stem)) && below.is(Blocks.WARPED_NYLIUM)) {
+
+            if (isWarpedStem(level.getBlockState(stem))
+                    && below.is(Blocks.WARPED_NYLIUM)) {
                 return true;
             }
         }
+
         return false;
     }
 
-    public static Set<BlockPos> findNetherVegetation(Level level, Set<BlockPos> stems, boolean crimson) {
+    public static Set<BlockPos> findNetherVegetation(
+            Level level,
+            Set<BlockPos> stems,
+            boolean crimson
+    ) {
         Set<BlockPos> vegetation = new HashSet<>();
         ArrayDeque<BlockPos> queue = new ArrayDeque<>();
 
         for (BlockPos stem : stems) {
-            for (BlockPos neighbor : getNeighbors(stem)) {
-                if (isValidNetherVegetation(level.getBlockState(neighbor), crimson)
-                        && vegetation.add(neighbor)) {
-                    queue.addLast(neighbor);
+
+            for (BlockPos neighbour : getNeighbours(stem)) {
+
+                if (isValidNetherVegetation(
+                        level.getBlockState(neighbour),
+                        crimson
+                ) && vegetation.add(neighbour)) {
+
+                    queue.addLast(neighbour);
                 }
             }
         }
 
-        while (!queue.isEmpty() && vegetation.size() < MAX_NETHER_BLOCKS) {
+        while (!queue.isEmpty()
+                && vegetation.size() < MAX_NETHER_BLOCKS) {
+
             BlockPos current = queue.removeFirst();
-            for (BlockPos neighbor : getNeighbors(current)) {
-                if (vegetation.contains(neighbor)) {
+
+            for (BlockPos neighbour : getNeighbours(current)) {
+
+                if (vegetation.contains(neighbour)) {
                     continue;
                 }
-                BlockState state = level.getBlockState(neighbor);
+
+                BlockState state = level.getBlockState(neighbour);
+
                 if (!isValidNetherVegetation(state, crimson)) {
                     continue;
                 }
-                vegetation.add(neighbor);
-                queue.addLast(neighbor);
+
+                vegetation.add(neighbour);
+                queue.addLast(neighbour);
+
                 if (vegetation.size() >= MAX_NETHER_BLOCKS) {
                     break;
                 }
             }
         }
+
         return vegetation;
     }
 
-    private static boolean isValidNetherVegetation(BlockState state, boolean crimson) {
+    private static boolean isValidNetherVegetation(
+            BlockState state,
+            boolean crimson
+    ) {
         if (state.is(Blocks.SHROOMLIGHT)) {
             return true;
         }
+
         return crimson
                 ? state.is(Blocks.NETHER_WART_BLOCK)
                 : state.is(Blocks.WARPED_WART_BLOCK);
     }
 
-    private static BlockPos[] getNeighbors(BlockPos pos) {
-        return new BlockPos[]{
-                pos.above(), pos.below(), pos.north(),
-                pos.south(), pos.east(), pos.west()
-        };
+    /**
+     * Returns all 26 neighbouring positions:
+     * 6 face neighbours, 12 edge neighbours and 8 corner neighbours.
+     */
+    private static BlockPos[] getNeighbours(BlockPos pos) {
+
+        BlockPos[] neighbours = new BlockPos[26];
+        int index = 0;
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                for (int z = -1; z <= 1; z++) {
+
+                    if (x == 0 && y == 0 && z == 0) {
+                        continue;
+                    }
+
+                    neighbours[index++] = pos.offset(x, y, z);
+                }
+            }
+        }
+
+        return neighbours;
     }
 }

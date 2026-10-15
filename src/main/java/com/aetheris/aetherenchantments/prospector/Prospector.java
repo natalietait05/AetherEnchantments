@@ -233,10 +233,10 @@ public final class Prospector {
                     break;
                 }
 
-                BlockPos neighbor =
+                BlockPos neighbour =
                         current.relative(direction);
 
-                if (found.contains(neighbor)) {
+                if (found.contains(neighbour)) {
                     continue;
                 }
 
@@ -245,18 +245,18 @@ public final class Prospector {
                  */
 
                 level.getChunkSource().hasChunk(
-                        neighbor.getX() >> 4,
-                        neighbor.getZ() >> 4
+                        neighbour.getX() >> 4,
+                        neighbour.getZ() >> 4
                 );
 
-                BlockState neighborState =
-                        level.getBlockState(neighbor);
+                BlockState neighbourState =
+                        level.getBlockState(neighbour);
 
                 /*
                  * Only registered ores are considered.
                  */
 
-                if (!neighborState.is(ORES)) {
+                if (!neighbourState.is(ORES)) {
                     continue;
                 }
 
@@ -267,7 +267,7 @@ public final class Prospector {
                  * prevent Prospector from finding other ores.
                  */
 
-                if (!canMineOre(tool, neighborState)) {
+                if (!canMineOre(tool, neighbourState)) {
                     continue;
                 }
 
@@ -281,16 +281,16 @@ public final class Prospector {
 
                 if (enchantmentLevel == 1) {
 
-                    String neighborFamily =
-                            getOreFamily(neighborState);
+                    String neighbourFamily =
+                            getOreFamily(neighbourState);
 
-                    if (!originFamily.equals(neighborFamily)) {
+                    if (!originFamily.equals(neighbourFamily)) {
                         continue;
                     }
                 }
 
-                found.add(neighbor.immutable());
-                queue.addLast(neighbor.immutable());
+                found.add(neighbour.immutable());
+                queue.addLast(neighbour.immutable());
             }
         }
 
