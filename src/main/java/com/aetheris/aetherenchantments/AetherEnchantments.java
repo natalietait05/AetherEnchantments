@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import com.aetheris.aetherenchantments.telekinesis.Telekinesis;
 
 import java.util.Set;
 
@@ -108,7 +107,7 @@ public final class AetherEnchantments implements ModInitializer {
             Treecapitator.stripTree(level, player, target, logs);
             return InteractionResult.SUCCESS;
         });
-        
+
     }
 
     private static int maxTreeBlocks(int level) {
