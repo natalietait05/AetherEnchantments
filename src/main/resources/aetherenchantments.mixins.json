@@ -6,7 +6,9 @@
     "IndestructibleArmorAttributesMixin",
     "IndestructibleArmorEnchantmentsMixin",
     "IndestructibleItemStackMixin",
-    "IndestructiblePlayerMixin"
+    "IndestructiblePlayerMixin",
+    "ServerPlayerGameModeMixin",
+    "ServerLevelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

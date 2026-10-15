@@ -14,6 +14,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import com.aetheris.aetherenchantments.telekinesis.Telekinesis;
 
 import java.util.Set;
 
@@ -21,6 +25,9 @@ public final class AetherEnchantments implements ModInitializer {
     public static final String MOD_ID = "aetherenchantments";
     public static final Identifier LUMBERJACK = id("lumberjack");
     public static final Identifier INDESTRUCTIBLE = id("indestructible");
+    public static final Identifier TELEKINESIS = id("telekinesis");
+    public static final TagKey<Item> TELEKINESIS_TOOLS = TagKey.create(Registries.ITEM, id("telekinesis_tools"));
+
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
@@ -37,6 +44,7 @@ public final class AetherEnchantments implements ModInitializer {
             )) {
                 return false;
             }
+
 
             if (Treecapitator.isProcessingTree()) {
                 return true;
@@ -100,6 +108,7 @@ public final class AetherEnchantments implements ModInitializer {
             Treecapitator.stripTree(level, player, target, logs);
             return InteractionResult.SUCCESS;
         });
+        
     }
 
     private static int maxTreeBlocks(int level) {
