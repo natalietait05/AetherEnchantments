@@ -4,11 +4,15 @@ package com.aetheris.aetherenchantments;
 import com.aetheris.aetherenchantments.enchantment.EnchantmentUtil;
 import com.aetheris.aetherenchantments.harvester.Harvester;
 import com.aetheris.aetherenchantments.treecapitator.Treecapitator;
+import com.aetheris.aetherenchantments.prospector.Prospector;
+
+
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 
+import net.minecraft.world.level.block.Block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -53,6 +57,24 @@ public final class AetherEnchantments implements ModInitializer {
 
     public static final Logger LOGGER =
             LoggerFactory.getLogger(MOD_ID);
+
+
+    public static final Identifier PROSPECTOR =
+            id("prospector");
+
+    public static final TagKey<Item> PROSPECTOR_TOOLS =
+            TagKey.create(
+                    Registries.ITEM,
+                    id("prospector_tools")
+            );
+
+    public static final TagKey<Block> PROSPECTOR_ORES =
+            TagKey.create(
+                    Registries.BLOCK,
+                    id("prospector_ores")
+            );
+
+
 
     @Override
     public void onInitialize() {
@@ -121,6 +143,32 @@ public final class AetherEnchantments implements ModInitializer {
                     return true;
                 }
         );
+
+
+        /*
+         * ============================================================
+         * PROSPECTOR - ORE VEIN MINING
+         * ============================================================
+         */
+
+        PlayerBlockBreakEvents.BEFORE.register(
+                (level, player, pos, state, blockEntity) -> {
+
+                    if (Treecapitator.isProcessingTree()
+                            || Prospector.isProcessing()) {
+                        return true;
+                    }
+
+                    Prospector.beforeBreak(
+                            level,
+                            player,
+                            pos
+                    );
+
+                    return true;
+                }
+        );
+
 
         /*
          * ============================================================

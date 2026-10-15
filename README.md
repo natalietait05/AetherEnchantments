@@ -87,6 +87,33 @@ Works with enchanted hoes and supports three levels.
 - Only plants on valid farmland with an empty space above it.
 - Supports wheat seeds, carrots, potatoes and beetroot seeds.
 
+### Prospector
+
+Prospector allows pickaxes to mine connected ore veins automatically, reducing the need to break each ore block individually.
+
+**Supported Tool:** Pickaxes
+
+**Maximum Blocks:** 256 per activation (including the original block).
+
+**Levels:**
+
+- **Prospector I:** Mines connected ores belonging to the same ore family as the original block. For example, an iron ore vein can contain both regular and deepslate iron ore, but not coal or gold.
+- **Prospector II:** Mines all connected registered ore types, regardless of their ore family.
+
+**Features:**
+
+- Detects ores connected through their six adjacent faces. Diagonal blocks are not considered connected.
+- Only blocks registered in the Prospector ore tag can be mined.
+- Respects vanilla tool mining requirements. A tool cannot mine ores that require a higher mining tier.
+- Inaccessible ores are skipped without preventing other accessible ores from being mined.
+- Supports vanilla ore variants, including deepslate ores, Nether gold ore, Nether quartz ore, and Ancient Debris.
+- Preserves normal block-breaking behavior, including Fortune, Silk Touch, tool durability, and other compatible enchantments.
+- Compatible with Telekinesis and Indestructible.
+- Avoids loading additional chunks during vein detection.
+
+**Important:** The 256-block limit includes the original ore block. Prospector can therefore break up to 255 additional blocks per activation.
+
+
 ## Enchantment Overview
 
 | Enchantment | Tool | Maximum Level | Main Ability |
@@ -95,6 +122,7 @@ Works with enchanted hoes and supports three levels.
 | Indestructible | Tools and armor | I | Prevents equipment from breaking |
 | Telekinesis | Supported tools | I | Automatically collects drops |
 | Harvester | Hoes | III | Area crop management |
+| Prospector | Pickaxes | II | Mines connected ore veins|
 
 ## Requirements
 

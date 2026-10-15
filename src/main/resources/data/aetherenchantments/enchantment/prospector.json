@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.aetherenchantments.prospector"
+  },
+  "supported_items": "#aetherenchantments:prospector_tools",
+  "primary_items": "#aetherenchantments:prospector_tools",
+  "weight": 5,
+  "max_level": 2,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 12
+  },
+  "max_cost": {
+    "base": 30,
+    "per_level_above_first": 12
+  },
+  "anvil_cost": 2,
+  "slots": [
+    "mainhand"
+  ]
+}
